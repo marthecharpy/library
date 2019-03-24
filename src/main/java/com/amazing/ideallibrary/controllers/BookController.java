@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.amazing.ideallibrary.entities.Author;
 import com.amazing.ideallibrary.entities.Book;
@@ -58,6 +59,40 @@ public class BookController {
     @GetMapping("/books/{id}")
     public String read(Model model, @PathVariable Long id) {
         model.addAttribute("book", bookRepo.findById(id).get());
+        model.addAttribute("author", authorRepo.findByBooksId(id));
         return "books/edit";
+    }
+
+    @PutMapping("/books/{id}")
+    public String update(@PathVariable Long id, @ModelAttribute Book book, @ModelAttribute Author author) {
+        String lastname = author.getLastname();
+        Author authorToUpdate = authorRepo.findByLastname(lastname);
+        if (author.getLastname()!= null) {
+            authorToUpdate.setLastname(author.getLastname());
+        }
+        if (author.getFirstname()!= null) {
+            authorToUpdate.setFirstname(author.getFirstname());
+        }
+        if (author.getNationality()!= null) {
+            authorToUpdate.setNationality(author.getNationality());
+        }
+        authorToUpdate = authorRepo.save(authorToUpdate);
+
+        Book bookToUpdate = bookRepo.findById(id).get();
+        if (book.getTitle()!= null) {
+            bookToUpdate.setTitle(book.getTitle());
+        }
+        if (book.getResume()!= null) {
+            bookToUpdate.setResume(book.getResume());
+        }
+        if (book.getDate()!= null) {
+            bookToUpdate.setDate(book.getDate());
+        }
+        if (book.getOpinion()!= null) {
+            bookToUpdate.setOpinion(book.getOpinion());
+        }
+        bookToUpdate.setAuthor(authorToUpdate);
+        bookToUpdate = bookRepo.save(bookToUpdate);
+        return "redirect:/";
     }
 }

@@ -12,7 +12,7 @@
         <h2 class="title">Ajouter un livre</h2>
         <a href="/" class="button">Revenir à la liste des livres</a>
 
-        <form action="#" th:action="@{/books/{id} (id=${book.id})}" method="put">
+        <form action="#" th:action="@{/books/{id} (id=${book.id})}" th:method="put">
             <div class="form-group">
                 <label for="title">Titre</label>
                 <input type="text" class="form-control" id="title" th:field="*{book.title}" th:attr="value =${book.title}">
@@ -23,11 +23,11 @@
                 <label for="opinion">Avis</label>
                 <textarea id="opinion" class="form-control" th:field="*{book.opinion}" th:attr="value =${book.opinion}"></textarea>
                 <label for="lastname">Nom de l'auteur</label>
-                <input type="text" class="form-control" id="lastname" th:field="*{book.author.lastname}" th:attr="value =${book.author.lastname}">
+                <input type="text" class="form-control" id="lastname" th:field="*{author.lastname}" th:attr="value =${author.lastname}">
                 <label for="firstname">Prénom de l'auteur</label>
-                <input type="text" class="form-control" id="firstname" th:field="*{book.author.firstname}" th:attr="value =${book.author.firstname}">
+                <input type="text" class="form-control" id="firstname" th:field="*{author.firstname}" th:attr="value =${author.firstname}">
                 <label for="nationality">Nationalité de l'auteur</label>
-                <select id="nationality" class="form-control" th:field="*{book.author.nationality}" th:attr="value =${book.author.nationality}">
+                <select id="nationality" class="form-control" th:field="*{author.nationality}" th:attr="value =${author.nationality}">
                     <option value="">Choisir une nationalité</option>
                     <option th:value="'anglaise'">anglaise</option>
                     <option th:value="'américaine'">américaine</option>
