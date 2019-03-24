@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.amazing.ideallibrary.entities.Author;
@@ -38,6 +39,7 @@ public class BookController {
         model.addAttribute("author",new Author());
         return "books/create";
     }
+
     @PostMapping("/")
     public String store(@ModelAttribute Book book, @ModelAttribute Author author) {
         String lastname = author.getLastname();
@@ -51,5 +53,11 @@ public class BookController {
         }
         book = bookRepo.save(book);
         return "redirect:/";
+    }
+
+    @GetMapping("/books/{id}")
+    public String read(Model model, @PathVariable Long id) {
+        model.addAttribute("book", bookRepo.findById(id).get());
+        return "books/edit";
     }
 }
