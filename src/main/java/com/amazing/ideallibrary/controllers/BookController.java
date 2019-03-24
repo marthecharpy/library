@@ -1,12 +1,11 @@
 package com.amazing.ideallibrary.controllers;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,6 +92,12 @@ public class BookController {
         }
         bookToUpdate.setAuthor(authorToUpdate);
         bookToUpdate = bookRepo.save(bookToUpdate);
+        return "redirect:/";
+    }
+
+    @DeleteMapping("/books/{id}")
+    public String delete(@PathVariable Long id) {
+        bookRepo.deleteById(id);
         return "redirect:/";
     }
 }
