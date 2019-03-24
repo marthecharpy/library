@@ -49,7 +49,7 @@ public class BookController {
         }
         else { 
             author = authorRepo.save(author);
-            book.setAuthor(existingAuthor);
+            book.setAuthor(author);
         }
         book = bookRepo.save(book);
         return "redirect:/";
