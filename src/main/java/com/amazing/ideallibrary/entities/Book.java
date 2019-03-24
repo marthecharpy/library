@@ -1,9 +1,15 @@
 package com.amazing.ideallibrary.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class Book {
@@ -17,14 +23,20 @@ public class Book {
     private String date;
     private String opinion;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "author_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Author author;
+
     public Book() {
     }
 
-    public Book(String title, String resume, String date, String opinion) {
+    public Book(String title, String resume, String date, String opinion, Author author) {
         this.title = title;
         this.resume = resume;
         this.date = date;
         this.opinion = opinion;
+        this.author = author;
     }
 
     public Long getId() {
@@ -61,5 +73,13 @@ public class Book {
 
     public void setOpinion(String opinion) {
         this.opinion = opinion;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
