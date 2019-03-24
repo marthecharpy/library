@@ -8,4 +8,6 @@ import com.amazing.ideallibrary.entities.Author;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long>{
 
+    Author findByLastname(String lastname);
+
 }
