@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>Books</title>
 </head>
-<body class="body-edit">
+<body class="body-books container">
     <header></header>
     <main>
-        <h1 class="h1">Ajouter un livre</h1>
-        <a href="/" class="button">Revenir à la liste des livres</a>
+        <h1 class="h1 m-3">Modifier le livre</h1>
+        <a href="/" class="button m-3">Revenir à la liste des livres</a>
 
-        <form action="#" th:action="@{/books/{id} (id=${book.id})}" th:method="put">
+
+        <form class="m-3" action="#" th:action="@{/books/{id} (id=${book.id})}" th:method="put">
             <div class="form-group">
                 <label for="title">Titre</label>
                 <input type="text" class="form-control" id="title" th:field="*{book.title}" th:attr="value =${book.title}">
@@ -34,7 +35,7 @@
                     <option th:value="'française'">française</option>
                     <option th:value="'scandinave'">scandinave</option>
                 </select>
-                <button type="submit" class="button">Modifier le livre</button>
+                <button type="submit" class="btn button">Modifier le livre</button>
             </div>
         </form>
     </main>
