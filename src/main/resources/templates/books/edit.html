@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Books</title>
+</head>
+<body class="body-books container">
+    <header>
+        <h1 class="h1 m-3 headerTitle">Fantastique bibliothèque</h1>
+    </header>
+    <main>
+        <h1 class="h1 m-3">Modifier le livre</h1>
+        <a href="/" class="button m-3">Revenir à la liste des livres</a>
+
+
+        <form class="m-3" action="#" th:action="@{/books/{id} (id=${book.id})}" th:method="put">
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" class="form-control" id="title" th:field="*{book.title}" th:attr="value =${book.title}">
+                <label for="resume">Résumé</label>
+                <textarea id="resume" class="form-control" th:field="*{book.resume}" th:attr="value =${book.resume}"></textarea>
+                <label for="date">Date de parution </label>
+                <input type="date" class="form-control" id="date" th:field="*{book.date}" th:attr="value =${book.date}">
+                <label for="opinion">Avis</label>
+                <textarea id="opinion" class="form-control" th:field="*{book.opinion}" th:attr="value =${book.opinion}"></textarea>
+                <label for="lastname">Nom de l'auteur</label>
+                <input type="text" class="form-control" id="lastname" th:field="*{author.lastname}" th:attr="value =${author.lastname}">
+                <label for="firstname">Prénom de l'auteur</label>
+                <input type="text" class="form-control" id="firstname" th:field="*{author.firstname}" th:attr="value =${author.firstname}">
+                <label for="nationality">Nationalité de l'auteur</label>
+                <select id="nationality" class="form-control" th:field="*{author.nationality}" th:attr="value =${author.nationality}">
+                    <option value="">Choisir une nationalité</option>
+                    <option th:value="'anglaise'">anglaise</option>
+                    <option th:value="'américaine'">américaine</option>
+                    <option th:value="'française'">française</option>
+                    <option th:value="'scandinave'">scandinave</option>
+                </select>
+                <button type="submit" class="btn button">Modifier le livre</button>
+            </div>
+        </form>
+    </main>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
