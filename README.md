@@ -1,7 +1,8 @@
-# library CRUD project in java by Marthe Charpy
+# library CRUD project
+by Marthe Charpy
 
-#used:
-# java spring
-# maven
-# mysql
-# thymeleaf
+# used:
+java spring
+maven
+mysql
+thymeleaf
